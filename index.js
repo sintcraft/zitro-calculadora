@@ -15,17 +15,35 @@ function calculate() {
   const a = parseFloat(document.getElementById("corda").value);
   const b = parseFloat(document.getElementById("cordb").value);
   var mayor = a;
+  var menor = b;
 
   if (isNaN(a) || isNaN(b)) return displayError("Números invalidos");
 
-  if (b > a) mayor = b;
+  if (b > a) {
+    mayor = b;
+    menor = a;
+  }
 
-  const c = Math.abs(a) + Math.abs(b);
-  const d = c / 2;
+  var c, d, medida, medio;
 
-  const medida = c * 25.4 - 5.95;
+  if (mayor > 0 && menor < 0) {
+    c = Math.abs(a) + Math.abs(b);
+    d = c / 2;
+    medida = c * 25.4 - 5.95;
+    medio = a - Math.abs(d);
+  } else {
+    if (Math.abs(a) > Math.abs(b)) {
+      c = a - b;
+      d = c / 2;
 
-  const medio = a - Math.abs(d);
+      medio = Math.abs(a) - d;
+    } else {
+      c = b - c;
+      d = c / 2;
+
+      medio = Math.abs(b) - d;
+    }
+  }
 
   const medidaElem = document.getElementById("medida-de-pieza");
   medidaElem.innerHTML = `Medida de pieza: ${medida}`;
