@@ -33,15 +33,23 @@ function calculate() {
     medio = a - Math.abs(d);
   } else {
     if (Math.abs(a) > Math.abs(b)) {
-      c = a - b;
+      c = Math.abs(a) - Math.abs(b);
       d = c / 2;
 
+      medida = c * 25.4 - 5.95;
       medio = Math.abs(a) - d;
+      if (a < 0) {
+        medio = medio * -1;
+      }
     } else {
-      c = b - c;
+      c = Math.abs(b) - Math.abs(a);
       d = c / 2;
 
-      medio = Math.abs(b) - d;
+      medida = c * 25.4 - 5.95;
+      medio = Math.abs(b) + d;
+      if (a < 0) {
+        medio = medio * -1;
+      }
     }
   }
 
